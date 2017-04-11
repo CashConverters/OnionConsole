@@ -126,3 +126,4 @@ node_modules
 #webpack hot update
 *hot-update.js*
 /src/Backup
+/OnionConsole/packages
