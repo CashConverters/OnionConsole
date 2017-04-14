@@ -1,0 +1,14 @@
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+image: Visual Studio 2017
+configuration: Release
+platform: Any CPU
+before_build:
+- cmd: nuget restore OnionConsole\OnionConsole.sln
+build:
+  project: OnionConsole\OnionConsole.sln
+  publish_nuget: true
+  publish_nuget_symbols: true
+  parallel: true
+  verbosity: minimal
