@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+	<title>$id$</title>
+    <authors>deekob</authors>
+    <owners>deekob</owners>
+     <licenseUrl>https://github.com/deekob/OnionConsole/blob/master/LICENCE.md</licenseUrl>
+    <projectUrl>https://github.com/deekob/OnionConsole</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Onion Console is a wrapper for Console apps running inside Azure App Service Web Jobs</description>
+    <tags>azure</tags>
+  </metadata>
+  <files>
+	<file src="bin\Release\*.dll" target="tools" />
+	<file src="bin\Release\*.exe" target="tools" />
+  </files>
+</package>
