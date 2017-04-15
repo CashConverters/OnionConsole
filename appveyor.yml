@@ -8,7 +8,7 @@ before_build:
 - cmd: nuget restore OnionConsole\OnionConsole.sln
 build:
   publish_nuget: true
-  include_nuget_references: true
+  include_nuget_references: false
   verbosity: minimal
 deploy:
   provider: NuGet
