@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommandLine;
+﻿using CommandLine;
 using CommandLine.Text;
-using NDesk.Options;
 
 namespace OnionConsole
 {
@@ -26,8 +20,9 @@ namespace OnionConsole
             HelpText = "The path to the primary {ASSEMBLY} for the worker role.")]
         public string AssemblyName { get; set; }
 
-        [Option('c', "configurationpath", DefaultValue = ".\\", Required = false, MutuallyExclusiveSet = "set",
-            HelpText = "The {PATH} to the configuration file. Either the directory containing ServiceConfiguration.Local.cscfg or the path to a specific alternate .cscfg file.")]
+        [Option('c', "configurationpath", Required = false, MutuallyExclusiveSet = "set",
+            HelpText = "The {PATH} to the configuration file. Either the directory containing application config or the path to a specific alternate config file." +
+                       " Defaults to current directory")]
         public string ConfigurationPath { get; set; }
 
 
@@ -42,10 +37,14 @@ namespace OnionConsole
         public string GetUsage()
         {
             return HelpText.AutoBuild(this,
-                (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
+                current => HelpText.DefaultParsingErrorsHandler(this, current));
         }
-
           public Parser Parser { get; }
+
+        public bool ParseArguments(string[] args, OnionArgs opts)
+        {
+            return Parser.ParseArguments(args, opts);
+        }
     }
 
   }

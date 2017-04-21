@@ -10,6 +10,7 @@ namespace OnionConsole.ServiceFabric
     {
         static void Main(string[] args)
         {
+            //TODO - Service Fabric Support
         }
     }
 }

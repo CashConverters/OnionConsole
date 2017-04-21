@@ -1,10 +1,8 @@
 ﻿using System;
-using CommandLine;
-using CommandLine.Text;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnionConsole.AppService
 {
@@ -13,17 +11,44 @@ namespace OnionConsole.AppService
         static void Main(string[] args)
         {
             var opts = new OnionArgs();
-            
-            if (opts.Parser.ParseArguments(args, opts))
+            if (opts.ParseArguments(args, opts))
             {
-                Console.WriteLine(opts.ConfigurationPath);
-                // Values are available here
-                if (opts.Verbose) Console.WriteLine("Filename: {0}", opts.AssemblyName);
-              
+                if (opts.ConfigurationPath == null)
+                    opts.ConfigurationPath = Directory.GetCurrentDirectory();
+
+                if (opts.Verbose)
+                {
+                    Console.WriteLine("ConfigurationPath: {0}", opts.ConfigurationPath);
+                    Console.WriteLine("AssemblyName: {0}", opts.AssemblyName);
+                }
             }
-            var state = opts.LastParserState;
-        
-            Console.ReadLine();
+
+            try
+            {
+                //todo tidy this up
+                var cloudServiceHelper = new CloudServiceHelper(opts.ConfigurationPath);
+                var roleEntryTypes = cloudServiceHelper.FindRoleEntryTypes();
+                var roleType = roleEntryTypes as IList<Type> ?? roleEntryTypes.ToList();
+                if (roleType.Any())
+                {
+                    var type = roleType.FirstOrDefault();
+                    if (type != null)
+                    {
+                        Console.WriteLine($"Running Role {type.FullName}");
+                        cloudServiceHelper.RunRole(type);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"No suitable roles found with {opts.ConfigurationPath}");
+                }
+            }
+            catch (Exception e)
+            {
+                Trace.TraceError($"Error starting Role {e.Message}");
+            }
+
+
         }
     }
 

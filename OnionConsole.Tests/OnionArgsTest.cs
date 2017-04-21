@@ -58,7 +58,8 @@ namespace OnionConsole.Tests
 
             var success = args.Parser.ParseArguments(opts, args);
             Assert.True(success);
-            Assert.Equal(".\\", args.ConfigurationPath.Trim());
+            Assert.Null(args.AssemblyName);
+            Assert.Null(args.ConfigurationPath);
         }
 
     }
