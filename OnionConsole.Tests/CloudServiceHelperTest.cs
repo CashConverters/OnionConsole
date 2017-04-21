@@ -6,8 +6,9 @@ namespace OnionConsole.Tests
 {
     public class CloudServiceHelperTest
     {
+        //todo find a better way
         private readonly string _pathToSomeRolesTypes = Path.Combine(Directory.GetCurrentDirectory(),
-            "..\\..\\..\\OnionConsole\\bin\\Debug");
+            "..\\..\\..\\OnionConsole\\bin\\", Path.GetFileName(Directory.GetCurrentDirectory()));
         [Fact]
         public void TestConstructor()
         {
