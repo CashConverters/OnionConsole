@@ -25,27 +25,12 @@ namespace OnionConsole.AppService
 
             try
             {
-                //todo tidy this up
                 var cloudServiceHelper = new CloudServiceHelper(opts.ConfigurationPath);
-                var roleEntryTypes = cloudServiceHelper.FindRoleEntryTypes();
-                var roleType = roleEntryTypes as IList<Type> ?? roleEntryTypes.ToList();
-                if (roleType.Any())
-                {
-                    var type = roleType.FirstOrDefault();
-                    if (type != null)
-                    {
-                        Console.WriteLine($"Running Role {type.FullName}");
-                        cloudServiceHelper.RunRole(type);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"No suitable roles found with {opts.ConfigurationPath}");
-                }
+                cloudServiceHelper.StartCloudService();
             }
             catch (Exception e)
             {
-                Trace.TraceError($"Error starting Role {e.Message}");
+                Console.WriteLine($"Error starting Role {e.Message}");
             }
 
 

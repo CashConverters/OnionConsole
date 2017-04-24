@@ -13,7 +13,9 @@
     <tags>azure</tags>
   </metadata>
   <files>
-	<file src="bin\Release\*.dll" target="tools" />
-	<file src="bin\Release\*.exe" target="tools" />
+  <file src="bin\$configuration$\$id$.exe.config" target="lib"/>
+ 
   </files>
+
+ 
 </package>

@@ -20,7 +20,7 @@ namespace OnionConsole
         public IEnumerable<Type> FindRoleEntryTypes()
         {
             DirectoryInfo binDir = new DirectoryInfo(_directoryPath);
-            var types = binDir.EnumerateFiles("*.dll", SearchOption.AllDirectories)
+            IEnumerable<Type> types = binDir.EnumerateFiles("*.dll", SearchOption.AllDirectories)
                 .Select(f => Assembly.LoadFile(f.FullName))
                 .SelectMany(a =>
                 {
@@ -38,12 +38,14 @@ namespace OnionConsole
         }
 
         
-       public void RunRole(Type roleType)
+       private void RunRole(Type roleType)
         {
-            // does this also apply to web roles??
-            if (!roleType.Name.Contains("Worker"))
+            try
             {
-                Trace.TraceError("Unable to run  a non worker role");
+                // does this also apply to web roles??
+                if (!roleType.Name.Contains("Worker"))
+            {
+                Console.WriteLine("Unable to run a non worker role");
                 return;
             }
             
@@ -51,27 +53,27 @@ namespace OnionConsole
 
             if (!_workerRole.OnStart())
             {
-                Trace.TraceError("Role failed to start for '{0}'", roleType);
+                Console.WriteLine("Role failed to start for '{0}'", roleType);
                 return;
             }
-            try
-            {
+
+                Console.WriteLine("Role failed to start for '{0}'", roleType);
                 _workerRole.Run();
+
             }
             catch (Exception ex)
             {
-                Trace.TraceError("Unable to Run Role" + ex.Message);
-            }
-            finally
-            {
+                Console.WriteLine("Unable to Run Role" + ex.GetBaseException());
                 _workerRole.OnStop();
             }
-
-
         }
 
 
-
-
+        public void StartCloudService()
+        {
+            var roleToRun = FindRoleEntryTypes().FirstOrDefault();
+            Console.WriteLine($"Run Role Called for Role {roleToRun?.FullName}");
+            RunRole(FindRoleEntryTypes().FirstOrDefault());
+        }
     }
 }
