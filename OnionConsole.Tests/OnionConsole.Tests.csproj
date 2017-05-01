@@ -55,7 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CloudServiceHelperTest.cs" />
+    <Compile Include="CloudServiceWrapperTest.cs" />
     <Compile Include="OnionArgsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
