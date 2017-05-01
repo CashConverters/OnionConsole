@@ -15,4 +15,4 @@
   <files>
     <file src="bin\$configuration$\$id$.exe.config" target="lib"/>
   </files>
-</package>
+/package>
