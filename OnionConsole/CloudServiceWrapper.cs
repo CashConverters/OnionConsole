@@ -73,7 +73,7 @@ namespace OnionConsole
                 // does this also apply to web roles??
                 if (!roleType.Name.Contains("Worker"))
             {
-                Console.WriteLine("Unable to run a non worker role");
+                Console.WriteLine("Unable to run role as it is not of type worker");
                 return;
             }
             
@@ -85,7 +85,7 @@ namespace OnionConsole
                 return;
             }
 
-                Console.WriteLine("Role failed to start for '{0}'", roleType);
+                Console.WriteLine("Starting Role '{0}'", roleType);
                 _workerRole.Run();
 
             }
