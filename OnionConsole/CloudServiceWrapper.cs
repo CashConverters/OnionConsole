@@ -85,7 +85,7 @@ namespace OnionConsole
                 return;
             }
 
-                Console.WriteLine("Role failed to start for '{0}'", roleType);
+                Console.WriteLine("Role is starting for '{0}'", roleType);
                 _workerRole.Run();
 
             }
