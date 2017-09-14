@@ -7,19 +7,8 @@ namespace OnionConsole.AppService
     {
         static void Main(string[] args)
         {
-            try
-            {
-                var cloudServiceHelper = new CloudServiceWrapper(Directory.GetCurrentDirectory());
-                cloudServiceHelper.StartCloudService();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Error starting Role {e.Message}");
-            }
-
-
+            var cloudServiceHelper = new CloudServiceWrapper(Directory.GetCurrentDirectory());
+            cloudServiceHelper.StartCloudService();
         }
     }
-
-
 }
