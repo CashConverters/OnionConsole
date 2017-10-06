@@ -15,7 +15,7 @@ before_build:
 - cmd: nuget restore OnionConsole\OnionConsole.sln
 build:
   publish_nuget: true
-  include_nuget_references: false
+  include_nuget_references: true
   verbosity: minimal
 # workaround: http://help.appveyor.com/discussions/problems/8215-cannot-publish-to-nuget-get-400-bad-request-error
 # deploy:
