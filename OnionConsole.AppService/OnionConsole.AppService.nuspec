@@ -4,10 +4,10 @@
     <id>$id$</id>
     <version>$version$</version>
 	<title>$id$</title>
-    <authors>deekob</authors>
-    <owners>deekob</owners>
-     <licenseUrl>https://github.com/deekob/OnionConsole/blob/master/LICENCE.md</licenseUrl>
-    <projectUrl>https://github.com/deekob/OnionConsole</projectUrl>
+    <authors>Derek Bingham, Eric Winkler</authors>
+    <owners>Derek Bingham, Eric Winkler</owners>
+     <licenseUrl>https://github.com/CashConverters/OnionConsole/blob/master/LICENCE.md</licenseUrl>
+    <projectUrl>https://github.com/CashConverters/OnionConsole</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Onion Console is a wrapper for Console apps running inside Azure App Service Web Jobs</description>
     <tags>azure</tags>
